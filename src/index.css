@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #0a0a0a;
+  --color-surface: #121212;
+  --color-primary: #ffffff;
+  --color-accent: #3b82f6;
+  --color-muted: #a1a1aa;
+  
+  /* Font Families */
+  --font-family-sans: "Inter", "sans-serif";
+  --font-family-serif: "sans-serif";
+  
+  /* Custom Breakpoints (if needed) */
+  --breakpoint-xs: 475px;
+  --breakpoint-3xl: 1920px;
+  
+  /* Spacing (if you need custom values) */
+  --spacing-18: 4.5rem;
+  --spacing-128: 32rem;
+  
+  /* Border Radius */
+  --radius-4xl: 2rem;
+  
+  /* Shadows */
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* You can also use @layer for custom utilities */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glass-morphism {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
