@@ -1,7 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin, FaMapMarkerAlt, FaTerminal, FaCode, FaRocket } from 'react-icons/fa';
+import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaMapMarkerAlt,
+  FaTerminal,
+  FaCode,
+  FaRocket,
+} from "react-icons/fa";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,14 +20,14 @@ const App = () => {
   const loaderRef = useRef(null);
   const mainContentRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [terminalText, setTerminalText] = useState('');
-  const [loadingText, setLoadingText] = useState('');
-  const [modules, setModules] = useState('');
+  const [terminalText, setTerminalText] = useState("");
+  const [loadingText, setLoadingText] = useState("");
+  const [modules, setModules] = useState("");
   const [systemReady, setSystemReady] = useState(false);
-  
-  const fullText = '> aftab@portfolio:~$ ./init_portfolio.sh';
-  const loadingFullText = 'Initializing portfolio...';
-  const modulesText = 'Loading modules: [React, Node.js, MongoDB, GSAP]';
+
+  const fullText = "> aftab@portfolio:~$ ./init_portfolio.sh";
+  const loadingFullText = "Initializing portfolio...";
+  const modulesText = "Loading modules: [React, Node.js, MongoDB, GSAP]";
 
   useEffect(() => {
     // Custom cursor trail effect
@@ -29,11 +37,11 @@ const App = () => {
           x: e.clientX - 10,
           y: e.clientY - 10,
           duration: 0.3,
-          ease: "power2.out"
+          ease: "power2.out",
         });
       }
     };
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener("mousemove", handleMouseMove);
 
     // Landing animation sequence with better timing
     const runLoadingSequence = async () => {
@@ -43,38 +51,38 @@ const App = () => {
           scale: 1,
           opacity: 0.5,
           duration: 0.6,
-          ease: "back.out(1.7)"
+          ease: "back.out(1.7)",
         });
       }
 
       // Wait a bit before typing
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
 
       // Typewriter for command - slower and more visible
       for (let i = 0; i <= fullText.length; i++) {
         setTerminalText(fullText.slice(0, i));
-        await new Promise(resolve => setTimeout(resolve, 60));
+        await new Promise((resolve) => setTimeout(resolve, 60));
       }
 
       // Wait before loading text
-      await new Promise(resolve => setTimeout(resolve, 400));
+      await new Promise((resolve) => setTimeout(resolve, 400));
 
       // Type loading text
       for (let i = 0; i <= loadingFullText.length; i++) {
         setLoadingText(loadingFullText.slice(0, i));
-        await new Promise(resolve => setTimeout(resolve, 40));
+        await new Promise((resolve) => setTimeout(resolve, 40));
       }
 
       // Wait before modules
-      await new Promise(resolve => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 300));
       setModules(modulesText);
 
       // Wait before system ready
-      await new Promise(resolve => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 600));
       setSystemReady(true);
 
       // Wait before closing
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Close animation
       if (loaderRef.current) {
@@ -82,7 +90,7 @@ const App = () => {
           scale: 0,
           opacity: 0,
           duration: 0.6,
-          ease: "back.in(1.7)"
+          ease: "back.in(1.7)",
         });
       }
 
@@ -93,7 +101,7 @@ const App = () => {
     runLoadingSequence();
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
@@ -105,7 +113,7 @@ const App = () => {
         gsap.from(mainContentRef.current, {
           opacity: 0,
           duration: 0.8,
-          ease: "power2.out"
+          ease: "power2.out",
         });
 
         // Hero animations
@@ -115,7 +123,7 @@ const App = () => {
           duration: 1,
           stagger: 0.2,
           ease: "power3.out",
-          delay: 0.3
+          delay: 0.3,
         });
 
         // Glitch effect on title
@@ -124,7 +132,7 @@ const App = () => {
           duration: 0.1,
           repeat: -1,
           yoyo: true,
-          repeatDelay: 3
+          repeatDelay: 3,
         });
 
         // Projects animation
@@ -137,7 +145,7 @@ const App = () => {
           opacity: 0,
           duration: 0.8,
           stagger: 0.2,
-          ease: "power3.out"
+          ease: "power3.out",
         });
 
         // Terminal blink cursor
@@ -146,7 +154,7 @@ const App = () => {
           duration: 0.5,
           repeat: -1,
           yoyo: true,
-          ease: "power1.inOut"
+          ease: "power1.inOut",
         });
       });
 
@@ -156,10 +164,9 @@ const App = () => {
 
   return (
     <div className="relative bg-background min-h-screen text-[#00ff41] selection:bg-[#00ff41] selection:text-black overflow-x-hidden font-mono">
-      
       {/* Loading Screen */}
       {isLoading && (
-        <div 
+        <div
           ref={loaderRef}
           className="fixed inset-0 z-200 flex items-center justify-center bg-background"
         >
@@ -170,20 +177,19 @@ const App = () => {
                 <div className="w-3 h-3 rounded-full bg-red-500" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500" />
                 <div className="w-3 h-3 rounded-full bg-green-500" />
-                <span className="ml-auto text-xs text-gray-500">bash - aftab@portfolio</span>
+                <span className="ml-auto text-xs text-gray-500">
+                  bash - aftab@portfolio
+                </span>
               </div>
-              
+
               {/* Terminal Content */}
               <div className="p-8 space-y-3 min-h-200px">
                 <p className="text-[#00ff41] text-lg">
-                  {terminalText}<span className="blink">_</span>
+                  {terminalText}
+                  <span className="blink">_</span>
                 </p>
-                {loadingText && (
-                  <p className="text-[#0088ff]">{loadingText}</p>
-                )}
-                {modules && (
-                  <p className="text-gray-500">{modules}</p>
-                )}
+                {loadingText && <p className="text-[#0088ff]">{loadingText}</p>}
+                {modules && <p className="text-gray-500">{modules}</p>}
                 {systemReady && (
                   <p className="text-[#00ff41] flex items-center gap-2 animate-pulse">
                     <span>✓</span> System ready
@@ -199,10 +205,10 @@ const App = () => {
       {!isLoading && (
         <div ref={mainContentRef}>
           {/* Custom Cursor */}
-          <div 
+          <div
             ref={cursorRef}
             className="fixed w-5 h-5 border-2 border-[#00ff41] rounded-full pointer-events-none z-100 hidden md:block opacity-50"
-            style={{ mixBlendMode: 'difference' }}
+            style={{ mixBlendMode: "difference" }}
           />
 
           {/* Scanline Effect */}
@@ -219,15 +225,24 @@ const App = () => {
               </h1>
             </div>
             <div className="flex gap-6 text-sm font-medium text-gray-400">
-              <a href="#projects" className="hover:text-[#00ff41] transition-all duration-300 hover:scale-110 relative group">
+              <a
+                href="#projects"
+                className="hover:text-[#00ff41] transition-all duration-300 hover:scale-110 relative group"
+              >
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00ff41] group-hover:w-full transition-all duration-300" />
                 [work]
               </a>
-              <a href="#about" className="hover:text-[#00ff41] transition-all duration-300 hover:scale-110 relative group">
+              <a
+                href="#about"
+                className="hover:text-[#00ff41] transition-all duration-300 hover:scale-110 relative group"
+              >
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00ff41] group-hover:w-full transition-all duration-300" />
                 [about]
               </a>
-              <a href="#contact" className="hover:text-[#00ff41] transition-all duration-300 hover:scale-110 relative group">
+              <a
+                href="#contact"
+                className="hover:text-[#00ff41] transition-all duration-300 hover:scale-110 relative group"
+              >
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00ff41] group-hover:w-full transition-all duration-300" />
                 [contact]
               </a>
@@ -235,74 +250,112 @@ const App = () => {
           </nav>
 
           {/* Hero Section */}
-          <section ref={heroRef} className="min-h-screen flex flex-col justify-center px-6 max-w-6xl mx-auto pt-20">
-            <h1 className="hero-text text-5xl md:text-7xl font-bold leading-tight mb-6 text-white glitch">
-              Full Stack Developer<span className="text-[#00ff41]">.</span>
-              <br />
-              <span className="text-[#0088ff]">Building digital excellence_</span>
-            </h1>
-            
-            <p className="hero-text text-gray-400 max-w-2xl text-lg mb-8 leading-relaxed">
-              <span className="text-[#00ff41]">$</span> cat about.txt
-              <br />
-              <span className="ml-4">I bridge the gap between complex backend logic and intuitive frontend design.</span>
-              <br />
-              <span className="ml-4">Currently studying ECE at Saveetha Engineering College.</span>
-            </p>
-            
-            <div className="hero-text flex flex-wrap gap-6 items-center">
-              <a 
-                href="https://github.com/git-aftab" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="flex items-center gap-2 text-gray-400 hover:text-[#00ff41] transition-all duration-300 hover:scale-110 group"
-              >
-                <FaGithub size={24} className="group-hover:rotate-12 transition-transform" /> 
-                <span className="hidden md:inline border-b border-transparent group-hover:border-[#00ff41]">git-aftab</span>
-              </a>
-              <a 
-                href="https://linkedin.com/in/md-aftab-360996328" 
-                target="_blank" 
-                rel="noreferrer" 
-                className="flex items-center gap-2 text-gray-400 hover:text-[#0088ff] transition-all duration-300 hover:scale-110 group"
-              >
-                <FaLinkedin size={24} className="group-hover:rotate-12 transition-transform" /> 
-                <span className="hidden md:inline border-b border-transparent group-hover:border-[#0088ff]">LinkedIn</span>
-              </a>
-              <div className="flex items-center gap-2 text-gray-500">
-                <FaMapMarkerAlt className="text-[#00ff41]" /> Chennai, India
+          <section
+            ref={heroRef}
+            className="min-h-screen grid grid-cols-2 pt-20 pl-20 mx-auto"
+          >
+            <div className="pl-40 pt-20 pb-20 col-span-1">
+              <h1 className="hero-text text-4xl md:text-5xl font-bold leading-tight mb-6 text-white glitch">
+                Full Stack Developer<span className="text-[#00ff41]">.</span>
+                <br />
+                <span className="text-[#0088ff]">
+                  Building digital excellence_
+                </span>
+              </h1>
+
+              <p className="hero-text text-gray-400 max-w-2xl text-lg mb-8 leading-relaxed">
+                <span className="text-[#00ff41]">$</span> cat about.txt
+                <br />
+                <span className="ml-4">
+                  I bridge the gap between complex backend logic and intuitive
+                  frontend design.
+                </span>
+                <br />
+                <span className="ml-4">
+                  Currently studying ECE at Saveetha Engineering College.
+                </span>
+              </p>
+
+              <div className="hero-text flex flex-wrap gap-6 items-center">
+                <a
+                  href="https://github.com/git-aftab"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-[#00ff41] transition-all duration-300 hover:scale-110 group"
+                >
+                  <FaGithub
+                    size={24}
+                    className="group-hover:rotate-12 transition-transform"
+                  />
+                  <span className="hidden md:inline border-b border-transparent group-hover:border-[#00ff41]">
+                    git-aftab
+                  </span>
+                </a>
+                <a
+                  href="https://linkedin.com/in/md-aftab-360996328"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-[#0088ff] transition-all duration-300 hover:scale-110 group"
+                >
+                  <FaLinkedin
+                    size={24}
+                    className="group-hover:rotate-12 transition-transform"
+                  />
+                  <span className="hidden md:inline border-b border-transparent group-hover:border-[#0088ff]">
+                    LinkedIn
+                  </span>
+                </a>
+                <div className="flex items-center gap-2 text-gray-500">
+                  <FaMapMarkerAlt className="text-[#00ff41]" /> Chennai, India
+                </div>
+              </div>
+
+              {/* Tech Stack Tags */}
+              <div className="hero-text mt-12 flex flex-wrap gap-3">
+                {[
+                  "React",
+                  "Node.js",
+                  "MongoDB",
+                  "Express",
+                  "TypeScript",
+                  "GSAP",
+                  "Tailwind",
+                ].map((tech, i) => (
+                  <span
+                    key={tech}
+                    className="px-3 py-1 border border-[#00ff41]/30 rounded text-xs text-[#00ff41] hover:bg-[#00ff41]/10 hover:scale-110 transition-all duration-300 cursor-default"
+                    style={{ animationDelay: `${i * 0.1}s` }}
+                  >
+                    {tech}
+                  </span>
+                ))}
               </div>
             </div>
-
-            {/* Tech Stack Tags */}
-            <div className="hero-text mt-12 flex flex-wrap gap-3">
-              {['React', 'Node.js', 'MongoDB', 'Express', 'TypeScript', 'GSAP', 'Tailwind'].map((tech, i) => (
-                <span 
-                  key={tech}
-                  className="px-3 py-1 border border-[#00ff41]/30 rounded text-xs text-[#00ff41] hover:bg-[#00ff41]/10 hover:scale-110 transition-all duration-300 cursor-default"
-                  style={{ animationDelay: `${i * 0.1}s` }}
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="col-span-1 max-h-full">
+              <img className="h-[800px] w-[600px] object-cover p-20" src="/portfolio_best_img_croped.png" alt="Profile Image" />
             </div>
           </section>
 
           {/* Projects Section */}
-          <section id="projects" ref={projectsRef} className="py-20 px-6 max-w-6xl mx-auto">
+          <section
+            id="projects"
+            ref={projectsRef}
+            className="py-20 px-6 max-w-6xl mx-auto"
+          >
             <h2 className="text-3xl font-bold mb-16 text-white flex items-center gap-3">
               <FaCode className="text-[#00ff41]" />
-              <span className="border-b-2 border-[#00ff41] pb-2">~/projects</span>
+              <span className="border-b-2 border-[#00ff41] pb-2">
+                ~/projects
+              </span>
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              
               {/* Project 1 */}
               <div className="project-card group">
                 <div className="bg-black/60 p-8 rounded-lg border-2 border-[#00ff41]/20 hover:border-[#00ff41] transition-all duration-500 hover:shadow-2xl hover:shadow-[#00ff41]/20 hover:scale-[1.02] relative overflow-hidden">
                   {/* Hover glow effect */}
                   <div className="absolute inset-0 bg-linear-to-br from-[#00ff41]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   <div className="relative z-10">
                     <div className="flex justify-between items-start mb-6">
                       <h3 className="text-2xl font-bold text-white group-hover:text-[#00ff41] transition-colors">
@@ -312,29 +365,40 @@ const App = () => {
                         JS / Cloudflare
                       </span>
                     </div>
-                    
+
                     <p className="text-gray-400 mb-6 leading-relaxed">
-                      A seamless, feature-rich web music player. Features context-aware playback, custom playlist persistence, and dual-mode search.
+                      A seamless, feature-rich web music player. Features
+                      context-aware playback, custom playlist persistence, and
+                      dual-mode search.
                     </p>
-                    
+
                     <div className="mb-6 space-y-2">
-                      {['Real-time Audio Visualization', 'Persistent LocalStorage Playlists', 'Smart Context Navigation'].map(feature => (
-                        <div key={feature} className="flex items-start gap-2 text-sm text-gray-500">
+                      {[
+                        "Real-time Audio Visualization",
+                        "Persistent LocalStorage Playlists",
+                        "Smart Context Navigation",
+                      ].map((feature) => (
+                        <div
+                          key={feature}
+                          className="flex items-start gap-2 text-sm text-gray-500"
+                        >
                           <span className="text-[#00ff41] mt-1">▹</span>
-                          <span className="group-hover:text-gray-300 transition-colors">{feature}</span>
+                          <span className="group-hover:text-gray-300 transition-colors">
+                            {feature}
+                          </span>
                         </div>
                       ))}
                     </div>
-                    
+
                     <div className="flex gap-4 text-sm">
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="text-[#00ff41] hover:text-[#0088ff] transition-colors underline underline-offset-4 decoration-[#00ff41]/30 hover:decoration-[#0088ff]"
                       >
                         [live_demo]
                       </a>
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="text-[#00ff41] hover:text-[#0088ff] transition-colors underline underline-offset-4 decoration-[#00ff41]/30 hover:decoration-[#0088ff]"
                       >
                         [github]
@@ -348,7 +412,7 @@ const App = () => {
               <div className="project-card group">
                 <div className="bg-black/60 p-8 rounded-lg border-2 border-[#0088ff]/20 hover:border-[#0088ff] transition-all duration-500 hover:shadow-2xl hover:shadow-[#0088ff]/20 hover:scale-[1.02] relative overflow-hidden">
                   <div className="absolute inset-0 bg-linear-to-br from-[#0088ff]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  
+
                   <div className="relative z-10">
                     <div className="flex justify-between items-start mb-6">
                       <h3 className="text-2xl font-bold text-white group-hover:text-[#0088ff] transition-colors">
@@ -358,29 +422,40 @@ const App = () => {
                         MERN / TypeScript
                       </span>
                     </div>
-                    
+
                     <p className="text-gray-400 mb-6 leading-relaxed">
-                      Production-ready financial management tool. Includes secure JWT auth, Razorpay integration, and data visualization.
+                      Production-ready financial management tool. Includes
+                      secure JWT auth, Razorpay integration, and data
+                      visualization.
                     </p>
-                    
+
                     <div className="mb-6 space-y-2">
-                      {['JWT Authentication & Bcrypt', 'Razorpay Payment Gateway', 'MongoDB Aggregations'].map(feature => (
-                        <div key={feature} className="flex items-start gap-2 text-sm text-gray-500">
+                      {[
+                        "JWT Authentication & Bcrypt",
+                        "Razorpay Payment Gateway",
+                        "MongoDB Aggregations",
+                      ].map((feature) => (
+                        <div
+                          key={feature}
+                          className="flex items-start gap-2 text-sm text-gray-500"
+                        >
                           <span className="text-[#0088ff] mt-1">▹</span>
-                          <span className="group-hover:text-gray-300 transition-colors">{feature}</span>
+                          <span className="group-hover:text-gray-300 transition-colors">
+                            {feature}
+                          </span>
                         </div>
                       ))}
                     </div>
-                    
+
                     <div className="flex gap-4 text-sm">
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="text-[#0088ff] hover:text-[#00ff41] transition-colors underline underline-offset-4 decoration-[#0088ff]/30 hover:decoration-[#00ff41]"
                       >
                         [live_demo]
                       </a>
-                      <a 
-                        href="#" 
+                      <a
+                        href="#"
                         className="text-[#0088ff] hover:text-[#00ff41] transition-colors underline underline-offset-4 decoration-[#0088ff]/30 hover:decoration-[#00ff41]"
                       >
                         [github]
@@ -389,25 +464,28 @@ const App = () => {
                   </div>
                 </div>
               </div>
-
             </div>
           </section>
 
           {/* Contact Section */}
-          <section id="contact" className="py-32 px-6 max-w-4xl mx-auto text-center">
+          <section
+            id="contact"
+            className="py-32 px-6 max-w-4xl mx-auto text-center"
+          >
             <FaRocket className="text-5xl text-[#00ff41] mx-auto mb-6 animate-bounce" />
-            
+
             <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">
-              <span className="text-[#00ff41]">$</span> Ready to collaborate<span className="text-[#0088ff]">?</span>
+              <span className="text-[#00ff41]">$</span> Ready to collaborate
+              <span className="text-[#0088ff]">?</span>
             </h2>
-            
+
             <p className="text-gray-400 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-              I'm currently looking for internships and new opportunities. 
-              Whether you have a question about my stack or just want to say hi, 
+              I'm currently looking for internships and new opportunities.
+              Whether you have a question about my stack or just want to say hi,
               my inbox is always open.
             </p>
-            
-            <a 
+
+            <a
               href="mailto:your.email@gmail.com"
               className="inline-block px-8 py-4 bg-[#00ff41] text-black font-bold rounded 
                          hover:bg-[#0088ff] hover:shadow-2xl hover:shadow-[#0088ff]/50
@@ -421,9 +499,13 @@ const App = () => {
           {/* Footer */}
           <footer className="py-10 text-center text-gray-600 text-sm border-t border-[#00ff41]/10">
             <p className="mb-2">
-              <span className="text-[#00ff41]">$</span> echo "© 2024 Aftab. Built with React, Tailwind & GSAP."
+              <span className="text-[#00ff41]">$</span> echo "© 2024 Aftab.
+              Built with React, Tailwind & GSAP."
             </p>
-            <p className="text-xs text-gray-700">System uptime: 99.9% | Status: <span className="text-[#00ff41]">Online</span></p>
+            <p className="text-xs text-gray-700">
+              System uptime: 99.9% | Status:{" "}
+              <span className="text-[#00ff41]">Online</span>
+            </p>
           </footer>
         </div>
       )}
