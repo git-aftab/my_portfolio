@@ -139,7 +139,7 @@ const App = () => {
         gsap.from(".project-card", {
           scrollTrigger: {
             trigger: projectsRef.current,
-            start: "top 80%",
+            start: "top 70%",
           },
           y: 100,
           opacity: 0,
@@ -331,8 +331,8 @@ const App = () => {
                 ))}
               </div>
             </div>
-            <div className="col-span-1 max-h-full">
-              <img className="h-[800px] w-[600px] object-cover p-20" src="/portfolio_best_img_croped.png" alt="Profile Image" />
+            <div className="col-span-1 max-h-full px-5">
+              <img className="h-[700px] w-[600px] object-cover pl-20 pr-20 pb-20 pt-10" src="/portfolio_best_img_croped_2.png" alt="Profile Image" />
             </div>
           </section>
 
@@ -340,7 +340,7 @@ const App = () => {
           <section
             id="projects"
             ref={projectsRef}
-            className="py-20 px-6 max-w-6xl mx-auto"
+            className="py-10 px-6 max-w-6xl mx-auto"
           >
             <h2 className="text-3xl font-bold mb-16 text-white flex items-center gap-3">
               <FaCode className="text-[#00ff41]" />
@@ -486,7 +486,7 @@ const App = () => {
             </p>
 
             <a
-              href="mailto:your.email@gmail.com"
+              href="mailto:aftabdev18@gmail.com"
               className="inline-block px-8 py-4 bg-[#00ff41] text-black font-bold rounded 
                          hover:bg-[#0088ff] hover:shadow-2xl hover:shadow-[#0088ff]/50
                          transition-all duration-300 transform hover:scale-110 
